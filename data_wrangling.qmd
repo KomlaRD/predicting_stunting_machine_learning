@@ -1,0 +1,29 @@
+---
+title: "Machine learning for predicting stunting - Data Wrangling"
+author: "Eric Anku"
+format: html
+---
+
+```{r load-packages}
+pacman::p_load(
+  tidyverse,
+  rio,
+  here,
+  finalfit,
+  skimr
+)
+```
+
+```{python load-libraries}
+import pandas as pd
+import numpy as np
+```
+
+```{r load-dataset}
+df <- rio::import(here("data", "ch.sav"))
+```
+
+```{r skim-dataset}
+skim(df)
+```
+
