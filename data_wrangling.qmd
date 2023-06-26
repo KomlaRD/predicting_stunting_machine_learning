@@ -27,3 +27,8 @@ df <- rio::import(here("data", "ch.sav"))
 skim(df)
 ```
 
+```{r rename-columns}
+# Rename columns and use descriptive names
+
+```
+
