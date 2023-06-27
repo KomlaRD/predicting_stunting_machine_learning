@@ -15,7 +15,7 @@ pacman::p_load(
 ```
 
 ```{r load-dataset}
-df <- rio::import(here("data", "ch.sav"))
+df <- import(here("data", "ch.sav"))
 ```
 
 ```{r skim-dataset}
