@@ -14,11 +14,6 @@ pacman::p_load(
 )
 ```
 
-```{python load-libraries}
-import pandas as pd
-import numpy as np
-```
-
 ```{r load-dataset}
 df <- rio::import(here("data", "ch.sav"))
 ```
