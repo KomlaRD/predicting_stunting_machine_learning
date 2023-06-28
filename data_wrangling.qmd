@@ -24,7 +24,7 @@ skim(df)
 
 ```{r rename-columns}
 # Rename features and use descriptive names
-df%>%
+df_clean <- df%>%
   rename(
     cluster_number_one = HH1,
     household_number_one = HH2,
@@ -46,7 +46,7 @@ df%>%
     start_interview_minutes = UF8M,
     end_interview_hour = UF11H,
     end_interview_minutes = UF11M,
-    lanquage_questionnaire = UF12,
+    language_questionnaire = UF12,
     language_interview = UF13,
     native_language_respondent = UF14,
     translator_used = UF15,
@@ -490,5 +490,9 @@ df%>%
     rural_wealth_index_decile = windex10r,
     primary_sampling_unit = PSU
   )
+```
+
+```{r skim-clean-data}
+skim(df_clean)
 ```
 
