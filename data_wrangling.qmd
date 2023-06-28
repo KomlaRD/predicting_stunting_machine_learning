@@ -492,20 +492,20 @@ df_clean <- df%>%
   )
 ```
 
-```{r skim-clean-data}
-skim(df_clean)
-```
-
 ```{r drop-columns-fifty-percent}
 threshold <- 0.5 # Set the threshold for missing values
 
 # Calculate the percentage of missing values for each column
-missing_percent <- colMeans(is.na(df))
+missing_percent <- colMeans(is.na(df_clean))
 
 # Get the names of columns with missing values exceeding the threshold
 cols_to_drop <- names(missing_percent[missing_percent > threshold])
 
 # Drop the columns from the data frame
-df_clean <- df[, !(names(df) %in% cols_to_drop)]
+df_clean <- df_clean[, !(names(df) %in% cols_to_drop)]
+```
+
+```{r skim-clean-data}
+skim(df_clean)
 ```
 
