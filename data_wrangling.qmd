@@ -34,7 +34,7 @@ df_clean <- df%>%
     child_line_number = UF3,
     interview_number = UFINT,
     mother_line_number = UF4,
-    interview_number_tw0 = UF5,
+    interview_number_two = UF5,
     supervisor_number = UF6,
     day_interview = UF7D,
     month_interview = UF7M,
@@ -492,7 +492,7 @@ df_clean <- df%>%
   )
 ```
 
-```{r drop-columns-fifty-percent}
+```{r drop-columns-fifty-percent-missing-data}
 threshold <- 0.5 # Set the threshold for missing values
 
 # Calculate the percentage of missing values for each column
@@ -508,4 +508,63 @@ df_clean <- df_clean[, !(names(df_clean) %in% cols_to_drop)]
 ```{r skim-clean-data}
 skim(df_clean)
 ```
+
+```{r drop-columns-with-same-values}
+# Calculate the variance of each column
+variance <- apply(df_clean, 2, var)
+
+# Get the names of columns with zero variance
+cols_to_drop_two <- names(variance[variance == 0])
+
+# Drop the columns from the data frame
+df_clean <- df_clean[, !(names(df_clean) %in% cols_to_drop_two)]
+```
+
+
+```{r}
+# Compare the two columns
+are_same <- identical(df_clean$household_number_one, df_clean$household_number_two)
+
+# Print the result
+if (are_same) {
+  print("The two columns are the same.")
+} else {
+  print("The two columns are different.")
+}
+
+```
+
+
+```{r}
+# Find columns with identical values
+identical_columns <- sapply(df_clean, function(x) length(unique(x))) == 1
+
+# Store the names of the removed columns
+removed_columns <- names(df_clean)[identical_columns]
+
+# Remove columns with identical values from the data frame
+df_clean <- df_clean[, !identical_columns]
+
+# Print the names of the removed columns
+cat("Removed columns:", paste(removed_columns, collapse = ", "))
+```
+
+```{r}
+skim(df_clean)
+```
+
+```{r check-duplicate-variables}
+# Head of dataset
+df_clean%>%
+  select(cluster_number_one, cluster_number_two, cluster_number_three, household_number_one, household_number_two, household_number_three, household_interviewer, household_interviewer_two, supervisor_number, supervisor_number_two, age_child, age_child_two)%>%
+  head(n = 20)
+
+# Tail of dataset
+df_clean%>%
+  select(cluster_number_one, cluster_number_two, cluster_number_three, household_number_one, household_number_two, household_number_three, household_interviewer, household_interviewer_two, supervisor_number, supervisor_number_two, age_child, age_child_two)%>%
+  tail(n = 20)
+```
+
+
+
 
