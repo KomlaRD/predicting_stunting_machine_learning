@@ -4,6 +4,9 @@ author: "Eric Anku"
 format: html
 ---
 
+
+## Import dataset
+
 ```{r load-packages}
 pacman::p_load(
   tidyverse,
@@ -17,6 +20,10 @@ pacman::p_load(
 ```{r load-dataset}
 df <- rio::import(here("data", "ch.sav"))
 ```
+
+
+## Data wrangling
+
 
 ```{r skim-dataset}
 skim(df)
@@ -564,6 +571,19 @@ df_clean%>%
   select(cluster_number_one, cluster_number_two, cluster_number_three, household_number_one, household_number_two, household_number_three, household_interviewer, household_interviewer_two, supervisor_number, supervisor_number_two, age_child, age_child_two)%>%
   tail(n = 20)
 ```
+
+
+## Exploratory data analysis
+
+
+## Feature engineering with recipes
+
+
+## Modelling with parsnip and workflow
+
+
+
+## Model performance with yardstick
 
 
 
