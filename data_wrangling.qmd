@@ -9,11 +9,13 @@ format: html
 
 ```{r load-packages}
 pacman::p_load(
-  tidyverse,
-  rio,
-  here,
-  finalfit,
-  skimr
+  tidyverse, # Data management and visualisation
+  rio, # Import and export dataset
+  here, # File management
+  finalfit, # Labelling
+  skimr, # Descriptive stats
+  ggstatsplot, # Exploratory data analysis
+  gtsummary # Table summaries
 )
 ```
 
