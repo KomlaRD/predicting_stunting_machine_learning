@@ -606,6 +606,7 @@ glimpse(df_clean)
 df_clean <- 
   df_clean |>
   mutate (
+    hfa_z_score_who = as.numeric(hfa_z_score_who),
     stunting = case_when(
       hfa_z_score_who > - 2 ~ "Stunting",
       hfa_z_score_who <= -2 ~ "Normal"
@@ -615,6 +616,16 @@ df_clean <-
   )
 ```
 
+```{r convert-nutritional-indicators}
+df_clean <- 
+  df_clean |>
+  mutate (
+    bmi_who = as.numeric(bmi_who),
+    bmi_z_score_who = as.numeric(bmi_z_score_who),
+    wfa_z_score_who = as.numeric(wfa_z_score_who),
+    wfh_z_score_who = as.numeric( wfh_z_score_who)
+  )
+```
 
 ## Exploratory data analysis
 
