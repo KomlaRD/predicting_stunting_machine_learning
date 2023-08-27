@@ -16,10 +16,11 @@ pacman::p_load(
   skimr, # Descriptive stats
   ggstatsplot, # Exploratory data analysis
   gtsummary, # Table summaries
-  tidymodels, # Modelling
+  rsample, # Data split
+  recipes, # Feature engineering
   DALEX, # Explainer
   modelDown, # Explainable AI report
-  foreign #Import spss dataset with factor variables loaded correctly
+  foreign #Import spss dataset with factor variables loaded correctly (NB: You can use rio if you set haven to false and set use.value.labels = TRUE)
 )
 ```
 
@@ -622,7 +623,11 @@ df_clean <-
 
 ```{r data-budget}
 # Split data into training and testing
+set.seed(123)
 
+df_split <- initial_split(df_clean, prop = 0.70, strata = stunting)
+
+df_split
 ```
 
 
