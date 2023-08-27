@@ -29,6 +29,7 @@ df <- read.spss("data/ch.sav", to.data.frame = TRUE)
 ```
 
 
+
 ## Data wrangling
 
 
@@ -643,12 +644,37 @@ df_clean <- df_clean |>
 df_clean |>
   ncol()
 ```
+
+
 ```{r glimpse-variables}
 glimpse(df_clean)
 ```
 
 ```{r}
+# Convert row values to sentence case
+df_clean <- df_clean |>
+  mutate_all(str_to_sentence)
 
+df_clean <- df_clean |>
+    mutate_if(is.factor, ~ as.factor(str_to_sentence(.)))
+
+glimpse(df_clean)
+```
+
+
+
+```{r mutate-stunting-variable}
+# Mutate target variable
+df_clean <- 
+  df_clean |>
+  mutate (
+    stunting = case_when(
+      hfa_z_score_who > - 2 ~ "Stunting",
+      hfa_z_score_who <= -2 ~ "Normal"
+    ),
+    stunting = factor(stunting) |>
+      ff_label("Stunting")
+  )
 ```
 
 
@@ -656,6 +682,11 @@ glimpse(df_clean)
 
 
 ## Feature engineering with recipes
+
+```{r data-budget}
+# Split data into training and testing
+
+```
 
 
 ## Modelling with parsnip and workflow
