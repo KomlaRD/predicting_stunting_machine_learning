@@ -626,12 +626,20 @@ df_clean <- df_clean |>
     wfa_flag_who,
     whz_flag_who,
     bmi_flag_who,
-    whz_age_flag_who
-  ))
+    whz_age_flag_who,
+    household_interviewer,
+    result_interview_u5,
+    day_birth_child,
+    month_birth_child,
+    year_birth_child
+    ))
 
 # Check column numbers
 df_clean |>
   ncol()
+```
+```{r glimpse-variables}
+glimpse(df_clean)
 ```
 
 
