@@ -33,11 +33,6 @@ df <- read.spss("data/ch.sav", to.data.frame = TRUE)
 
 ## Data wrangling
 
-
-```{r skim-dataset}
-skim(df)
-```
-
 ```{r rename-columns}
 # Rename features and use descriptive names
 df_clean <- df%>%
@@ -590,6 +585,24 @@ df_clean |>
 glimpse(df_clean)
 ```
 
+
+```{r convert-nutritional-indicators}
+df_clean <- 
+  df_clean |>
+  mutate (
+    hfa_z_score_who = as.double(hfa_z_score_who),
+    bmi_who = as.double(bmi_who),
+    bmi_z_score_who = as.double(bmi_z_score_who),
+    wfa_z_score_who = as.double(wfa_z_score_who),
+    wfh_z_score_who = as.double( wfh_z_score_who)
+  )
+
+df_clean |>
+  glimpse()
+```
+
+
+
 ```{r row-values}
 # Convert row values to sentence case
 df_clean <- df_clean |>
@@ -600,13 +613,11 @@ glimpse(df_clean)
 ```
 
 
-
 ```{r mutate-stunting-variable}
 # Mutate target variable
-df_clean <- 
+df_clean <-
   df_clean |>
   mutate (
-    hfa_z_score_who = as.numeric(hfa_z_score_who),
     stunting = case_when(
       hfa_z_score_who > - 2 ~ "Stunting",
       hfa_z_score_who <= -2 ~ "Normal"
@@ -616,19 +627,13 @@ df_clean <-
   )
 ```
 
-```{r convert-nutritional-indicators}
-df_clean <- 
-  df_clean |>
-  mutate (
-    bmi_who = as.numeric(bmi_who),
-    bmi_z_score_who = as.numeric(bmi_z_score_who),
-    wfa_z_score_who = as.numeric(wfa_z_score_who),
-    wfh_z_score_who = as.numeric( wfh_z_score_who)
-  )
-```
+
 
 ## Exploratory data analysis
 
+```{r skim-dataset}
+skim(df)
+```
 
 ## Feature engineering with recipes
 
@@ -639,6 +644,15 @@ set.seed(123)
 df_split <- initial_split(df_clean, prop = 0.70, strata = stunting)
 
 df_split
+```
+
+
+```{r extract-training-testing-data}
+# Training dataset
+df_train <- training(df_split)
+
+# Testing dataset
+df_test <- testing(df_split)
 ```
 
 
