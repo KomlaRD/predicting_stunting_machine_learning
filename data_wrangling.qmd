@@ -23,6 +23,7 @@ pacman::p_load(
 ```
 
 ```{r load-dataset}
+# Load dataset
 df <- rio::import(here("data", "ch.sav"))
 ```
 
@@ -522,60 +523,117 @@ skim(df_clean)
 ```
 
 ```{r drop-columns-with-same-values}
-# Calculate the variance of each column
-variance <- apply(df_clean, 2, var)
-
-# Get the names of columns with zero variance
-cols_to_drop_two <- names(variance[variance == 0])
-
-# Drop the columns from the data frame
-df_clean <- df_clean[, !(names(df_clean) %in% cols_to_drop_two)]
+# # Calculate the variance of each column
+# variance <- apply(df_clean, 2, var)
+# 
+# # Get the names of columns with zero variance
+# cols_to_drop_two <- names(variance[variance == 0])
+# 
+# # Drop the columns from the data frame
+# df_clean <- df_clean[, !(names(df_clean) %in% cols_to_drop_two)]
 ```
 
 
 ```{r}
-# Compare the two columns
-are_same <- identical(df_clean$household_number_one, df_clean$household_number_two)
-
-# Print the result
-if (are_same) {
-  print("The two columns are the same.")
-} else {
-  print("The two columns are different.")
-}
+# # Compare the two columns
+# are_same <- identical(df_clean$household_number_one, df_clean$household_number_two)
+# 
+# # Print the result
+# if (are_same) {
+#   print("The two columns are the same.")
+# } else {
+#   print("The two columns are different.")
+# }
 
 ```
 
 
 ```{r}
-# Find columns with identical values
-identical_columns <- sapply(df_clean, function(x) length(unique(x))) == 1
-
-# Store the names of the removed columns
-removed_columns <- names(df_clean)[identical_columns]
-
-# Remove columns with identical values from the data frame
-df_clean <- df_clean[, !identical_columns]
-
-# Print the names of the removed columns
-cat("Removed columns:", paste(removed_columns, collapse = ", "))
+# # Find columns with identical values
+# identical_columns <- sapply(df_clean, function(x) length(unique(x))) == 1
+# 
+# # Store the names of the removed columns
+# removed_columns <- names(df_clean)[identical_columns]
+# 
+# # Remove columns with identical values from the data frame
+# df_clean <- df_clean[, !identical_columns]
+# 
+# # Print the names of the removed columns
+# cat("Removed columns:", paste(removed_columns, collapse = ", "))
 ```
 
 ```{r}
-skim(df_clean)
+# skim(df_clean)
 ```
 
 ```{r check-duplicate-variables}
-# Head of dataset
-df_clean%>%
-  select(cluster_number_one, cluster_number_two, cluster_number_three, household_number_one, household_number_two, household_number_three, household_interviewer, household_interviewer_two, supervisor_number, supervisor_number_two, age_child, age_child_two)%>%
-  head(n = 20)
-
-# Tail of dataset
-df_clean%>%
-  select(cluster_number_one, cluster_number_two, cluster_number_three, household_number_one, household_number_two, household_number_three, household_interviewer, household_interviewer_two, supervisor_number, supervisor_number_two, age_child, age_child_two)%>%
-  tail(n = 20)
+# # Head of dataset
+# df_clean%>%
+#   select(cluster_number_one, cluster_number_two, cluster_number_three, household_number_one, household_number_two, household_number_three, household_interviewer, household_interviewer_two, supervisor_number, supervisor_number_two, age_child, age_child_two)%>%
+#   head(n = 20)
+# 
+# # Tail of dataset
+# df_clean%>%
+#   select(cluster_number_one, cluster_number_two, cluster_number_three, household_number_one, household_number_two, household_number_three, household_interviewer, household_interviewer_two, supervisor_number, supervisor_number_two, age_child, age_child_two)%>%
+#   tail(n = 20)
 ```
+
+
+```{r remove-irrelevant-variables}
+# Remove irrelevant and redundant variables from the dataset
+df_clean <- df_clean |>
+  select(-c(
+    cluster_number_one,
+    household_number_one,
+    line_number,
+    cluster_number_two,
+    household_number_two,
+    household_number_three,
+    child_line_number,
+    interview_number,
+    mother_line_number,
+    interview_number_two,
+    supervisor_number,
+    day_interview,
+    month_interview,
+    year_interview,
+    consent,
+    start_interview_hour,
+    start_interview_minutes,
+    end_interview_hour,
+    end_interview_minutes,
+    language_questionnaire,
+    language_interview,
+    native_language_respondent,
+    translator_used,
+    household_interviewer_two,
+    day_measurement_anthro,
+    month_measurement_anthro,
+    year_measurement_anthro,
+    supervisor_number_two,
+    date_interview_child,
+    hfa_percentile_nchs,
+    hfa_z_score_nchs,
+    hfa_reference_median_nchs,
+    wfa_percentile_nchs,
+    wfa_z_score_nchs,
+    wfa_reference_median_nchs,
+    wfh_percentile_nchs,
+    wfh_reference_median_nchs,
+    wfh_z_score_nchs,
+    flag_indicators,
+    hfa_flag_who,
+    wfa_flag_who,
+    whz_flag_who,
+    bmi_flag_who,
+    whz_age_flag_who
+  ))
+
+# Check column numbers
+df_clean |>
+  ncol()
+```
+
 
 
 ## Exploratory data analysis
