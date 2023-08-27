@@ -18,13 +18,14 @@ pacman::p_load(
   gtsummary, # Table summaries
   tidymodels, # Modelling
   DALEX, # Explainer
-  modelDown # Explainable AI report
+  modelDown, # Explainable AI report
+  foreign #Import spss dataset with factor variables loaded correctly
 )
 ```
 
 ```{r load-dataset}
 # Load dataset
-df <- rio::import(here("data", "ch.sav"))
+df <- read.spss("data/ch.sav", to.data.frame = TRUE) 
 ```
 
 
