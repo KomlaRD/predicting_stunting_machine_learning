@@ -15,7 +15,10 @@ pacman::p_load(
   finalfit, # Labelling
   skimr, # Descriptive stats
   ggstatsplot, # Exploratory data analysis
-  gtsummary # Table summaries
+  gtsummary, # Table summaries
+  tidymodels, # Modelling
+  DALEX, # Explainer
+  modelDown # Explainable AI report
 )
 ```
 
