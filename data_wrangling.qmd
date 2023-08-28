@@ -18,6 +18,7 @@ pacman::p_load(
   gtsummary, # Table summaries
   rsample, # Data split
   recipes, # Feature engineering
+  parsnip, # Fit models
   DALEX, # Explainer
   modelDown, # Explainable AI report
   foreign #Import spss dataset with factor variables loaded correctly (NB: You can use rio if you set haven to false and set use.value.labels = TRUE)
@@ -657,6 +658,10 @@ df_test <- testing(df_split)
 
 
 ## Modelling with parsnip and workflow
+
+```{r create-models}
+r
+```
 
 
 
