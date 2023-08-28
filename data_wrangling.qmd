@@ -660,7 +660,32 @@ df_test <- testing(df_split)
 ## Modelling with parsnip and workflow
 
 ```{r create-models}
-r
+# Logistic regression
+
+
+# Ridge regression
+
+
+# LASSO 
+
+
+# Naves Bayes
+
+
+# Support Vector Machine
+
+
+# Extreme Gradient Boosting
+
+
+# Neural network
+
+
+# Random forest
+
+
+# K-Nearest Neighbours
+
 ```
 
 
