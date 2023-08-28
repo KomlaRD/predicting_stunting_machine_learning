@@ -661,31 +661,47 @@ df_test <- testing(df_split)
 
 ```{r create-models}
 # Logistic regression
+logistic_spec <- logistic_reg() |>
+  set_engine("stan")
 
-
-# Ridge regression
-
-
-# LASSO 
-
+# Linear discriminant analysis
+lda_spec <- discrim_linear() |>
+  set_engine("sparsediscrim")
 
 # Naves Bayes
-
+nb_spec <- naive_Bayes() |>
+  set_engine("naivebayes") |>
+  set_mode("classification")
 
 # Support Vector Machine
-
+svm_spec <- svm_linear() |>
+  set_engine("kernlab") |>
+  set_mode("classification")
 
 # Extreme Gradient Boosting
-
+xbgboost_spec <- boost_tree() |>
+  set_engine("xgboost") |>
+  set_mode("classification")
 
 # Neural network
-
+nn_spec <- bag_mlp() |>
+  set_engine("nnet") |>
+  set_mode("bag_mlp_nnet")
 
 # Random forest
-
+rf_spec <- rand_forest(trees = 1000, min_n = 5) |> 
+  set_engine("ranger") %>% 
+  set_mode("classification")
 
 # K-Nearest Neighbours
+knn_spec <- nearest_neighbor() |>
+  set_engine("kknn") |>
+  set_mode("classification")
 
+# Automatic machine learning
+automl_spec <- auto_ml() |>
+  set_engine("h20") |>
+  set_mode("classification")
 ```
 
 
