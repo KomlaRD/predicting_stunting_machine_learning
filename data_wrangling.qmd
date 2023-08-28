@@ -730,3 +730,9 @@ logit_fit <- fit(logit_wflow, df_train)
 
 
 
+```{r predict-using-workflow}
+# Example of prediction using workflow
+# predict(logit_fit, df_test)
+```
+
+
