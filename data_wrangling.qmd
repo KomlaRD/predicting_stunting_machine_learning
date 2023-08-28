@@ -30,7 +30,6 @@ df <- read.spss("data/ch.sav", to.data.frame = TRUE)
 ```
 
 
-
 ## Data wrangling
 
 ```{r rename-columns}
@@ -654,6 +653,7 @@ df_train <- training(df_split)
 # Testing dataset
 df_test <- testing(df_split)
 ```
+
 
 
 ## Modelling with parsnip and workflow
