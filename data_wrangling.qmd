@@ -19,6 +19,7 @@ pacman::p_load(
   rsample, # Data split
   recipes, # Feature engineering
   parsnip, # Fit models
+  workflows, # Model workflow
   DALEX, # Explainer
   modelDown, # Explainable AI report
   foreign #Import spss dataset with factor variables loaded correctly (NB: You can use rio if you set haven to false and set use.value.labels = TRUE)
@@ -705,9 +706,13 @@ automl_spec <- auto_ml() |>
 ```
 
 
-
 ## Model performance with yardstick
 
+```{r resampling-methods}
+# Resampling methods for model performance
+
+
+```
 
 
 
