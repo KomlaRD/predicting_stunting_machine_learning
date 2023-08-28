@@ -715,6 +715,12 @@ logit_wflow <-
 ```
 
 
+```{r workflow-set}
+# Example workflow set
+# df_wflowset <- workflow_set(preproc = location, models = list(lm = lm_model))
+```
+
+
 ```{r fit-models}
 # Example of model fitting
 logit_fit <- fit(logit_wflow, df_train)
