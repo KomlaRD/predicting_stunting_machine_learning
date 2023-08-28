@@ -20,6 +20,7 @@ pacman::p_load(
   recipes, # Feature engineering
   parsnip, # Fit models
   workflows, # Model workflow
+  workflowset, # Combination of workflow components
   DALEX, # Explainer
   modelDown, # Explainable AI report
   foreign #Import spss dataset with factor variables loaded correctly (NB: You can use rio if you set haven to false and set use.value.labels = TRUE)
