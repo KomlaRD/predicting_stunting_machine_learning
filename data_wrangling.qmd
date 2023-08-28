@@ -706,6 +706,14 @@ automl_spec <- auto_ml() |>
 ```
 
 
+```{r model-workflow}
+# Example model workflow
+logit_wflow <- 
+  workflow() |>
+  add_model(logistic_spec)
+```
+
+
 ## Model performance with yardstick
 
 ```{r resampling-methods}
