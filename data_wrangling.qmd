@@ -588,15 +588,32 @@ glimpse(df_clean)
 ```
 
 
+```{r remove-text-levels}
+# Remove non-numeric elements and convert to numeric
+df_clean$hfa_z_score_who <- str_replace_all(as.character(df_clean$hfa_z_score_who), "[^0-9.-]", "")
+df_clean$bmi_who <- str_replace_all(as.character(df_clean$bmi_who), "[^0-9.-]", "")
+df_clean$wfa_z_score_who <- str_replace_all(as.character(df_clean$wfa_z_score_who), "[^0-9.-]", "")
+df_clean$wfh_z_score_who <- str_replace_all(as.character(df_clean$wfh_z_score_who), "[^0-9.-]", "")
+df_clean$bmi_z_score_who <- str_replace_all(as.character(df_clean$bmi_z_score_who), "[^0-9.-]", "")
+```
+
+
+```{r remove-empty-text}
+# Remove empty text fields using dplyr and stringr
+df_clean <- df_clean %>%
+  filter(str_trim(as.character(hfa_z_score_who, bmi_who, wfa_z_score_who, wfh_z_score_who, bmi_z_score_who)) != "")
+```
+
+
 ```{r convert-nutritional-indicators}
-df_clean <- 
+# df_clean <- 
   df_clean |>
   mutate (
     hfa_z_score_who = as.double(hfa_z_score_who),
     bmi_who = as.double(bmi_who),
     bmi_z_score_who = as.double(bmi_z_score_who),
     wfa_z_score_who = as.double(wfa_z_score_who),
-    wfh_z_score_who = as.double( wfh_z_score_who)
+    wfh_z_score_who = as.double(wfh_z_score_who)
   )
 
 df_clean |>
