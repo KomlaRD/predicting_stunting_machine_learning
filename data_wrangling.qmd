@@ -606,7 +606,7 @@ df_clean <- df_clean %>%
 
 
 ```{r convert-nutritional-indicators}
-# df_clean <- 
+df_clean <- 
   df_clean |>
   mutate (
     hfa_z_score_who = as.double(hfa_z_score_who),
