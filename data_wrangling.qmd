@@ -674,6 +674,12 @@ df_train <- training(df_split)
 df_test <- testing(df_split)
 ```
 
+```{r preprocessing}
+# Preprocessing steps using recipes
+df_rec <- 
+  recipe(stunting ~ ., data = df_train) |>
+  step_dummy(all_nominal_predictors())
+```
 
 
 ## Modelling with parsnip and workflow
