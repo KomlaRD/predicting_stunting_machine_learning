@@ -22,6 +22,7 @@ pacman::p_load(
   workflows, # Model workflow
   workflowset, # Combination of workflow components
   yardstick, # Model performance
+  tune, # Performance metrics using resample
   DALEX, # Explainer
   DataExplorer, # Automated data exploration
   gtExtras, # Summary tables
@@ -814,10 +815,31 @@ logit_fit <- fit(logit_wflow, df_train)
 
 ## Model performance with yardstick
 
+```{r binary-performance}
+# Confusion matrix
+conf_mat()
+
+# Classification metrics
+classification_metrics <- metric_set(accuracy, mcc, f_meas)
+
+# ROC and AUC
+roc_auc()
+roc_curve()
+```
+
+
 ```{r resampling-methods}
 # Resampling methods for model performance
+set.seed(123)
+df_folds <- vfold_cv(df_train, v = 10)
 
+# Example model fit
+rf_res <- 
+  rf_wflow |>
+  fit_resamples(df_fold)
 
+# Performance metrics
+collect_metrics(rf_res)
 ```
 
 
