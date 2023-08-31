@@ -23,14 +23,21 @@ pacman::p_load(
   workflowset, # Combination of workflow components
   DALEX, # Explainer
   DataExplorer, # Automated data exploration
+  gtExtras, # Summary tables
   modelDown, # Explainable AI report
   foreign #Import spss dataset with factor variables loaded correctly (NB: You can use rio if you set haven to false and set use.value.labels = TRUE)
 )
 ```
 
 ```{r load-dataset, warning=FALSE}
-# Load dataset
+# Load dataset for MICS6 (2017-2018)
 df <- read.spss("data/ch.sav", to.data.frame = TRUE) 
+
+# Load dataset for MICS4 (2011)
+df_two <- read.spss("data/ch_2011.sav", to.data.frame = TRUE) 
+
+# Load dataset for MICS3 (2006)
+df_three <- read.spss("data/ch_2006.sav", to.data.frame = TRUE) 
 ```
 
 
@@ -659,7 +666,12 @@ skim(df)
 
 ```{r create-report}
 # create report
-create_report(df)
+create_report(df_clean)
+```
+
+
+```{r create-summary-eda}
+gt_plt_summary(df_clean)
 ```
 
 ## Feature engineering with recipes
