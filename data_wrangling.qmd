@@ -21,6 +21,7 @@ pacman::p_load(
   parsnip, # Fit models
   workflows, # Model workflow
   workflowset, # Combination of workflow components
+  yardstick, # Model performance
   DALEX, # Explainer
   DataExplorer, # Automated data exploration
   gtExtras, # Summary tables
