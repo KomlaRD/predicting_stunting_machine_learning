@@ -673,8 +673,8 @@ df_clean <-
   df_clean |>
   mutate (
     stunting = case_when(
-      hfa_z_score_who > - 2 ~ "Stunting",
-      hfa_z_score_who <= -2 ~ "Normal"
+      hfa_z_score_who < - 2 ~ "Stunting",
+      hfa_z_score_who >= -2 ~ "Normal"
     ),
     stunting = factor(stunting) |>
       ff_label("Stunting")
@@ -687,7 +687,7 @@ df_clean <-
 
 ```{r skim-dataset-eda}
 #Skim dataset
-skim(df)
+skim(df_clean)
 ```
 
 
