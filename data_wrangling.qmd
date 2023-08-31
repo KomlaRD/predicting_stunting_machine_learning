@@ -744,7 +744,8 @@ automl_spec <- auto_ml() |>
 # Example model workflow
 logit_wflow <- 
   workflow() |>
-  add_model(logistic_spec)
+  add_model(logistic_spec) |>
+  add_recipe(df_rec)
 ```
 
 
