@@ -598,7 +598,14 @@ df_clean <- df_clean |>
     medicine_missing,
     place_got_antibiotics_missing,
     place_got_antimalaria_missing,
-    listing_category
+    listing_category,
+    child_line_number_two,
+    child_under_five_sample_weight,
+    primary_sampling_unit,
+    stratum,
+    child_measure_lenhei,
+    health_insurance_nhis,
+    number_women_20_24
     ))
 
 # Check column numbers
