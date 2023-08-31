@@ -582,7 +582,23 @@ df_clean <- df_clean |>
     result_interview_u5,
     day_birth_child,
     month_birth_child,
-    year_birth_child
+    year_birth_child,
+    age_child,
+    age_child_two,
+    cluster_number_three,
+    date_birth_child,
+    interviewer_number,
+    measurer_id_code,
+    mother_line_number_two,
+    place_sought_care_missing,
+    place_got_ors_missing,
+    place_got_ors_missing_two,
+    place_sought_care_missing_illness,
+    other_treatment_missing,
+    medicine_missing,
+    place_got_antibiotics_missing,
+    place_got_antimalaria_missing,
+    listing_category
     ))
 
 # Check column numbers
