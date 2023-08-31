@@ -24,6 +24,7 @@ pacman::p_load(
   DALEX, # Explainer
   DataExplorer, # Automated data exploration
   gtExtras, # Summary tables
+  themis, # Subsampling
   modelDown, # Explainable AI report
   foreign #Import spss dataset with factor variables loaded correctly (NB: You can use rio if you set haven to false and set use.value.labels = TRUE)
 )
@@ -727,9 +728,17 @@ df_test <- testing(df_split)
 # Preprocessing steps using recipes
 df_rec <- 
   recipe(stunting ~ ., data = df_train) |>
-  step_impute_bag() |>
-  step_impute_mode() |>
+  step_corr(threshold = tune())
+  step_impute_bag(all_numeric_predictors()) |>
+  step_impute_mode(all_nominal_predictors()) |>
   step_dummy(all_nominal_predictors())
+```
+
+
+```{r upsample}
+df_upsample <- 
+  df_rec |>
+  step_upsample(stunting)
 ```
 
 
