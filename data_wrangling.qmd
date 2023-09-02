@@ -28,6 +28,8 @@ pacman::p_load(
   gtExtras, # Summary tables
   themis, # Subsampling
   modelDown, # Explainable AI report
+  rstanarm, # Model packages
+  ranger, # Random forest
   foreign #Import spss dataset with factor variables loaded correctly (NB: You can use rio if you set haven to false and set use.value.labels = TRUE)
 )
 ```
@@ -731,9 +733,10 @@ df_test <- testing(df_split)
 # Preprocessing steps using recipes
 df_rec <- 
   recipe(stunting ~ ., data = df_train) |>
-  step_corr(threshold = tune()) |>
+  step_corr(threshold = 0.80) |>
   step_impute_bag(all_numeric_predictors()) |>
   step_impute_mode(all_nominal_predictors()) |>
+  step_naomit() |>
   step_dummy(all_nominal_predictors())
 ```
 
