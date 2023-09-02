@@ -726,11 +726,12 @@ df_train <- training(df_split)
 df_test <- testing(df_split)
 ```
 
+
 ```{r preprocessing}
 # Preprocessing steps using recipes
 df_rec <- 
   recipe(stunting ~ ., data = df_train) |>
-  step_corr(threshold = tune())
+  step_corr(threshold = tune()) |>
   step_impute_bag(all_numeric_predictors()) |>
   step_impute_mode(all_nominal_predictors()) |>
   step_dummy(all_nominal_predictors())
@@ -773,7 +774,7 @@ xbgboost_spec <- boost_tree() |>
 # Neural network
 nn_spec <- bag_mlp() |>
   set_engine("nnet") |>
-  set_mode("bag_mlp_nnet")
+  set_mode("classification")
 
 # Random forest
 rf_spec <- rand_forest(trees = 1000, min_n = 5) |> 
