@@ -771,18 +771,6 @@ df_clean <-  df_clean |>
 ```
 
 
-
-```{r create-report}
-# create report
-create_report(df_clean)
-```
-
-
-```{r create-summary-eda}
-gt_plt_summary(df_clean)
-```
-
-
 ```{r remove-missing-rows}
 # Remove few missing rows
 df_clean <- df_clean |>
@@ -797,6 +785,19 @@ df_clean <- df_clean |>
   ) |>
   na.omit()
 ```
+
+
+
+```{r create-report}
+# create report
+create_report(df_clean)
+```
+
+
+```{r create-summary-eda}
+gt_plt_summary(df_clean)
+```
+
 
 
 
