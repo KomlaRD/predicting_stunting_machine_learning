@@ -774,15 +774,6 @@ df_clean <-  df_clean |>
 ```{r remove-missing-rows}
 # Remove few missing rows
 df_clean <- df_clean |>
-  select(
-    bmi_who,
-    child_weight_kg,
-    wfa_z_score_who,
-    stunting,
-    hfa_z_score_who,
-    bmi_z_score_who,
-    wfh_z_score_who
-  ) |>
   na.omit()
 ```
 
@@ -846,9 +837,6 @@ df_rec <- df_train |>
 df_rec <- 
   recipe(stunting ~ ., data = df_train) |>
   step_corr(threshold = 0.80) |>
-  step_impute_bag(all_numeric_predictors()) |>
-  step_impute_mode(all_nominal_predictors()) |>
-  step_naomit() |>
   step_dummy(all_nominal_predictors())
 ```
 
