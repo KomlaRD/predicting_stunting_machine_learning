@@ -699,6 +699,7 @@ skim(df_clean)
 df_clean <-  df_clean |>
   select(
     -c(
+      # Domain knowledge
       children_books,
       birth_certificate,
       homemade_toys,
@@ -754,7 +755,17 @@ df_clean <-  df_clean |>
       covered_health_insurance,
       compared_child_difficulty_picking,
       child_learning_things,
-      vaccination_card_child
+      vaccination_card_child,
+      # Remove features (32 - 42% missing data)
+      child_being_breastfed,
+      child_being_breastfed,
+      method_dispose_stools,
+      functional_disability_two_four_years,
+      rural_wealth_score,
+      rural_wealth_index_quintile,
+      rural_wealth_index_decile,
+      highest_level_education,
+      highest_grade_attended
     )
   )
 ```
@@ -792,6 +803,25 @@ df_train <- training(df_split)
 
 # Testing dataset
 df_test <- testing(df_split)
+```
+
+
+
+```{r}
+# Using random forest for feature selection
+base_model <- 
+  rand_forest(mode = "classification") |>
+  set_engine("ranger", importance = "permutation")
+
+df_rec <- df_train |>
+  recipe(stunting ~ .) |>
+  step_select_forests (
+    
+    all_predictors(),
+    model = base_model,
+    top_p = 2,
+    outcome = "stunting"
+  )
 ```
 
 
