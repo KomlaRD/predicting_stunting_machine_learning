@@ -758,7 +758,7 @@ df_clean <-  df_clean |>
       vaccination_card_child,
       # Remove features (32 - 42% missing data)
       child_being_breastfed,
-      child_being_breastfed,
+      child_ever_breastfed,
       method_dispose_stools,
       functional_disability_two_four_years,
       rural_wealth_score,
@@ -782,6 +782,21 @@ create_report(df_clean)
 gt_plt_summary(df_clean)
 ```
 
+
+```{r remove-missing-rows}
+# Remove few missing rows
+df_clean <- df_clean |>
+  select(
+    bmi_who,
+    child_weight_kg,
+    wfa_z_score_who,
+    stunting,
+    hfa_z_score_who,
+    bmi_z_score_who,
+    wfh_z_score_who
+  ) |>
+  na.omit()
+```
 
 
 
