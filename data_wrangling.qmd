@@ -34,6 +34,12 @@ pacman::p_load(
 )
 ```
 
+
+```{r install-recipe-selectors}
+devtools::install_github("stevenpawley/recipeselectors")
+```
+
+
 ```{r load-dataset, warning=FALSE}
 # Load dataset for MICS6 (2017-2018)
 df <- read.spss("data/ch.sav", to.data.frame = TRUE) 
@@ -689,6 +695,71 @@ df_clean <-
 skim(df_clean)
 ```
 
+```{r remove-additional-redundant-features}
+df_clean <-  df_clean |>
+  select(
+    -c(
+      children_books,
+      birth_certificate,
+      homemade_toys,
+      toys_shops,
+      household_objects,
+      days_left_alone,
+      days_left_with_another_child,
+      took_away_privileges,
+      explained_behaviour_wrong,
+      shook_child,
+      shouted_at_child,
+      gave_child_something,
+      spanked_child_bare_hand,
+      hit_child_bottom,
+      hit_child_face_head_ears,
+      hit_child_hand_arm_leg,
+      called_child_dumb,
+      beat_child,
+      believe_child_physically_punished,
+      child_wear_glasses,
+      child_assistance_walking,
+      child_hearing_aid,
+      child_difficulty_seeing,
+      child_difficulty_sounds,
+      child_difficulty_understanding_parent,
+      child_difficulty_understood_parent,
+      child_difficulty_playing,
+      compared_child_difficulty_walking,
+      compared_child_difficulty_walking,
+      compared_children_child_kick_other_children,
+      card_document_seen,
+      child_undressed_minimum,
+      day_bcg_immunization,
+      day_men_a_immunization,
+      day_mr2_immunization,
+      day_polio_immunization,
+      day_polio1_immunization,
+      day_polio2_immunization,
+      day_polio3_immunization,
+      day_pentavalent_immunization,
+      day_pentavalent2_immunization,
+      day_pentavalent3_immunization,
+      day_pneumococcal_immunization,
+      day_pneumococcal2_immunization,
+      day_pneumococcal3_immunization,
+      day_rotation_immunization,
+      day_mr_immunization,
+      day_rotation2_immunization,
+      day_yellow_fever_immunization,
+      day_vitamin_a_immunization_six,
+      day_vitamin_a_immunization_s12,
+      day_vitamin_a_immunization_s18,
+      covered_health_insurance,
+      compared_child_difficulty_picking,
+      child_learning_things,
+      vaccination_card_child
+    )
+  )
+```
+
+
 
 ```{r create-report}
 # create report
@@ -699,6 +770,7 @@ create_report(df_clean)
 ```{r create-summary-eda}
 gt_plt_summary(df_clean)
 ```
+
 
 
 
