@@ -23,18 +23,6 @@ pacman::p_load(
 ```
 
 
-```{r install-recipe-selectors, eval=FALSE}
-devtools::install_github("stevenpawley/recipeselectors", force = TRUE)
-```
-
-```{r eval=FALSE}
-remotes::install_github("stevenpawley/extrarecipes", force = TRUE)
-```
-
-```{r eval=FALSE}
-remotes::install_version("recipes", version = "1.0.5")
-```
-
 
 ```{r load-dataset, warning=FALSE}
 # Load dataset for MICS6 (2017-2018)
