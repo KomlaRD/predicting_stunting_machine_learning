@@ -18,13 +18,13 @@ pacman::p_load(
   gtsummary, # Table summaries
   DataExplorer, # Automated data exploration
   gtExtras, # Summary tables
-  foreign, #Import spss dataset with factor variables loaded correctly (NB: You can use rio if you set haven to false and set use.value.labels = TRUE)
+  foreign #Import spss dataset with factor variables loaded correctly (NB: You can use rio if you set haven to false and set use.value.labels = TRUE)
 )
 ```
 
 
 
-```{r load-dataset, warning=FALSE}
+```{r load-dataset, warning=FALSE, message=FALSE}
 # Load dataset for MICS6 (2017-2018)
 df <- read.spss("data/ch.sav", to.data.frame = TRUE) 
 ```
@@ -775,5 +775,8 @@ create_report(df_clean)
 gt_plt_summary(df_clean)
 ```
 
-
+```{r export-dataset}
+# Export wrangled dataset
+export(df_clean, here("data", "df_wrangled.RData"))
+```
 
