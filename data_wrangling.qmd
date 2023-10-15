@@ -793,4 +793,50 @@ export(df_clean, here("data", "df.csv"))
 ```
 
 
+```{r table-summary}
+# Rearrange the columns
+df_clean <- df_clean |>
+  select(age_days, sex, child_weight_kg, child_lenhei_cm, everything())
+
+df_clean <- 
+  df_clean |>
+  mutate (
+    mother_educational_level = mother_educational_level |>
+      fct_relevel(
+      "Pre-primary or none",
+      "Primary",
+      "Jss/jhs/middle",
+      "Sss/shs/ secondary",
+      "Higher"
+    ),
+    wealth_index_decile = wealth_index_decile |>
+      fct_relevel(
+      "1st decile",
+      "2nd decile",
+      "3rd decile",
+      "4th decile",
+      "5th decile",
+      "6th decile",
+      "7th decile",
+      "8th decile",
+      "9th decile",
+      "10th decile"
+    ),
+    wealth_index_quintile = wealth_index_quintile |>
+      fct_relevel(
+        "Poorest",
+        "Second",
+        "Middle",
+        "Fourth",
+        "Richest"
+      )
+  )
+
+```
+
+
+```{r}
+df_clean |>
+  tbl_summary()
+```
 
