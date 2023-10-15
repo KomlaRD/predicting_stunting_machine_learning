@@ -778,5 +778,9 @@ gt_plt_summary(df_clean)
 ```{r export-dataset}
 # Export wrangled dataset
 export(df_clean, here("data", "df_wrangled.RData"))
+
+export(df_clean, here("data", "df.csv"))
 ```
+
+
 
