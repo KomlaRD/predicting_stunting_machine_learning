@@ -757,7 +757,11 @@ df_clean <-  df_clean |>
       bmi_z_score_who,
       bmi_who,
       wfa_z_score_who,
-      wfh_z_score_who
+      wfh_z_score_who,
+      # Remove additional redundant variables
+      age_months,
+      age_months_6,
+      age_months_11
     )
   )
 ```
