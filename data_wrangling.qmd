@@ -751,7 +751,13 @@ df_clean <-  df_clean |>
       highest_level_education,
       highest_grade_attended,
       # Constant variable in modelling (drop feature)
-      difficulty_breathing_illness_cough
+      difficulty_breathing_illness_cough,
+      # Remove z-score values as they are derived from other variables in the dataset
+      hfa_z_score_who,
+      bmi_z_score_who,
+      bmi_who,
+      wfa_z_score_who,
+      wfh_z_score_who
     )
   )
 ```
