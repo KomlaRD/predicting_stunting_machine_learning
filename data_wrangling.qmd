@@ -837,6 +837,26 @@ df_clean <-
 
 ```{r}
 df_clean |>
-  tbl_summary()
+  tbl_summary(
+    label = c(
+      age_days ~"Age (days)",
+      sex ~ "Sex",
+      child_weight_kg ~ "Weight (kg)",
+      child_lenhei_cm ~ "Length/Height (cm)",
+      child_had_diarrhoea_last_two_weeks ~ "Child had diarrhoea last two weeks",
+      child_ill_fever_two_weeks ~ "Child ill with fever last two weeks",
+      child_ill_cough_two_weeks ~ "Child ill with cough last two weeks",
+      area ~ "Area",
+      region ~ "Region",
+      mother_educational_level ~ "Mother's educational level",
+      health_insurance ~ "Health insurance",
+      mother_functional_disability_18_49 ~ "Functional disability of mother",
+      ethnicity ~ "Ethnicity",
+      combined_wealth_score ~ "Combined wealth score",
+      wealth_index_quintile ~ "Wealth index (Quintile)",
+      wealth_index_decile ~ "Wealth index (Decile)",
+      stunting ~ "Stunting"
+    )
+  )
 ```
 
